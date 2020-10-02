@@ -1,20 +1,36 @@
+{% load static %}
 <html>
     <head>
         <title>My little blog</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        
     </head>
     <body>
-        <div>
+        <div class="page-header">
             <h1><a href="/">My little blog</a></h1>
-            <a href="/admin"> For more content... </a>
-            <br>
+            <a href="/admin"> Add new posts </a>
+            
         </div>
-        
-        {% for post in posts %}
-            <div>
-                <p> publicado: {{ post.published_date }}</p>
-                <h2><a href="">{{ post.title }}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>
+        <br>
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                <p><b>publicado: {{ post.published_date }}</b></p>
+                            </div>
+                            <h2><a href="">{{ post.title }}</a></h2>
+                            <a href="https://en.wikipedia.org/wiki/Django" class="external_link" id="link_to_wiki_page">For more info...</a>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
             </div>
-        {% endfor %}
+        </div>
     </body>
 </html>
+
